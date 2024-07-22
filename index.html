@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Photo</title>
+    <title>Random Thematic Photo</title>
     <style>
         body {
             display: flex;
@@ -26,7 +26,7 @@
     </style>
 </head>
 <body>
-    <img id="random-photo" alt="Random Photo">
+    <img id="random-photo" alt="Random Thematic Photo">
     <script>
         function generateRandomPhoto() {
             const imgElement = document.getElementById('random-photo');
@@ -44,6 +44,9 @@
 
         // Генерация нового изображения при загрузке страницы
         window.onload = generateRandomPhoto;
+
+        // Добавляем клик на изображение для генерации нового фото
+        document.getElementById('random-photo').addEventListener('click', generateRandomPhoto);
     </script>
 </body>
 </html>
