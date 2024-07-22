@@ -16,19 +16,17 @@
 
         img {
             cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.5s;
         }
 
-        .loading {
-            opacity: 0.5;
-        }
-
-        .loaded {
+        img.loaded {
             opacity: 1;
         }
     </style>
 </head>
 <body>
-    <img id="random-photo" alt="Random Photo" class="loading">
+    <img id="random-photo" alt="Random Photo">
     <script>
         function generateRandomPhoto() {
             const imgElement = document.getElementById('random-photo');
@@ -37,11 +35,10 @@
             const randomId = new Date().getTime(); // Используем текущее время в миллисекундах для уникальности
 
             imgElement.src = `https://picsum.photos/${randomWidth}/${randomHeight}?random=${randomId}`;
-            imgElement.classList.add('loading');
+            imgElement.classList.remove('loaded'); // Сбрасываем класс loaded перед загрузкой нового изображения
 
             imgElement.onload = () => {
-                imgElement.classList.remove('loading');
-                imgElement.classList.add('loaded');
+                imgElement.classList.add('loaded'); // Добавляем класс loaded после полной загрузки изображения
             };
         }
 
