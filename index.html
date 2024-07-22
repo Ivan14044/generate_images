@@ -17,17 +17,32 @@
         img {
             cursor: pointer;
         }
+
+        .loading {
+            opacity: 0.5;
+        }
+
+        .loaded {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
-    <img id="random-photo" alt="Random Photo">
+    <img id="random-photo" alt="Random Photo" class="loading">
     <script>
         function generateRandomPhoto() {
             const imgElement = document.getElementById('random-photo');
             const randomWidth = Math.floor(Math.random() * 400) + 400;  // Случайная ширина от 400 до 800 пикселей
             const randomHeight = Math.floor(Math.random() * 300) + 300; // Случайная высота от 300 до 600 пикселей
             const randomId = new Date().getTime(); // Используем текущее время в миллисекундах для уникальности
+
             imgElement.src = `https://picsum.photos/${randomWidth}/${randomHeight}?random=${randomId}`;
+            imgElement.classList.add('loading');
+
+            imgElement.onload = () => {
+                imgElement.classList.remove('loading');
+                imgElement.classList.add('loaded');
+            };
         }
 
         // Генерация нового изображения при загрузке страницы
